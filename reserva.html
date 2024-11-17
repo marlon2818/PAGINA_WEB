@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva - Glamping Cañaberal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        img.logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"] {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 11px;
+            color: #34495e;
+        }
+        button {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px;
+            font-size: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #2ecc71;
+        }
+        .mensaje {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .mensaje-exito {
+            background-color: #e9f7ef;
+            color: #2ecc71;
+            border: 1px solid #27ae60;
+        }
+        .mensaje-error {
+            background-color: #fbeeee;
+            color: #e74c3c;
+            border: 1px solid #c0392b;
+        }
+        .back-home button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-home {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo Glamping Cañaberal" class="logo">
+        <h3>Formulario de Reserva</h3>
+
+        <!-- Sección para mostrar el mensaje -->
+        <div id="mensaje"></div>
+
+        <form action="reserva.php" method="POST">
+            <input type="text" name="nombre_completo" placeholder="Nombre Completo" required>
+            <input type="tel" name="telefono" pattern="[0-9]{10}" placeholder="Número de Teléfono" required>
+            <input type="email" name="correo" placeholder="glamping@example.com" required>
+            <input type="date" name="fecha_ingreso" placeholder="Fecha de Ingreso" required>
+            <input type="date" name="fecha_salida" placeholder="Fecha de Salida" required>
+            <input type="number" name="numero_personas" min="1" max="4" placeholder="Número de Personas" required>
+            <button type="submit">Reservar</button>
+        </form>
+
+        <div class="back-home">
+            <a href="Glampingcañaberal.html">
+                <button>Volver a la página principal</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar mensaje basado en el parámetro de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const mensajeDiv = document.getElementById('mensaje');
+
+        if (status === 'exito') {
+            mensajeDiv.innerHTML = '<div class="mensaje mensaje-exito">¡Su reserva ha sido exitosa! Gracias por elegirnos.</div>';
+        } else if (status === 'error') {
+            mensajeDiv.innerHTML = '<div class="mensaje mensaje-error">Hubo un problema con su reserva. Por favor, intente nuevamente.</div>';
+        }
+    </script>
+</body>
+</html>

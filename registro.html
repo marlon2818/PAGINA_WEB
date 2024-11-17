@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Glamping Cañaberal</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        img.logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"] {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 11px;
+            color: #34495e;
+        }
+        button {
+            background-color: #12e752;
+            color: white;
+            padding: 10px;
+            font-size: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #14d845;
+        }
+        .back-home button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-home {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .mensaje {
+            background-color: #9aaf7e;
+            color: #0e0ba3;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .mensaje-exito {
+            background-color: #eff7f7;
+            color: #56a768;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo Glamping Cañaberal" class="logo">
+        <h3>Formulario de Registro</h3>
+
+        <!-- Sección para mostrar el mensaje -->
+        <div id="mensaje"></div>
+
+        <form action="registrar_usuario.php" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre Completo" required>
+            <input type="tel" name="telefono" pattern="[0-9]{10}" placeholder="Número de Teléfono" required>
+            <input type="email" name="email" placeholder="glamping@example.com" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Registrar</button>
+        </form>
+
+        <div class="back-home">
+            <a href="Glampingcañaberal.html">
+                <button>Volver a la página principal</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para mostrar el mensaje según el parámetro en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const mensajeDiv = document.getElementById('mensaje');
+
+        if (status === 'exito') {
+            mensajeDiv.innerHTML = '<div class="mensaje mensaje-exito">¡Registro exitoso! Ahora puedes iniciar sesión.</div>';
+        } else if (status === 'error') {
+            mensajeDiv.innerHTML = '<div class="mensaje">El correo ya está registrado. Por favor, intenta con otro correo.</div>';
+        }
+    </script>
+</body>
+</html>
